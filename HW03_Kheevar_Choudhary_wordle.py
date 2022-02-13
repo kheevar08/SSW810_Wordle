@@ -3,7 +3,11 @@ import HW03_Kheevar_Choudhary_dictionary as dictionary      #importing the dicti
 
 
 def main():
+    gamesPlayed = 0
+    gamesWon = 0
+    guessDistribution = [0,0,0,0,0,0]
     while(True):                        #used to run the program indefinitely until a user enters an empty word to exit the program
+        gamesPlayed = gamesPlayed + 1
         answer = dictionary.randomWord()
         attempts = 1
         while(attempts<7):              # user has 6 attempts to guess the correct word
@@ -17,6 +21,8 @@ def main():
 
             if(word == answer):                     
                 print("Correct Word! \n")
+                gamesWon = gamesWon + 1
+                guessDistribution[attempts-1] += 1
                 print("Now the word has been changed, to exit please press ENTER/RETURN")
                 break
             else:
@@ -43,6 +49,17 @@ def main():
             if(attempts == 7):              #checking if this is the last attempt or not
                 print(f"The correct answer is #{answer}")
                 print("Now the word has been changed, to exit please press ENTER/RETURN")
+        print("GAME STATISTICS")
+        print(f"Total number of games played: {gamesPlayed}")
+        print(f"Win percentage: {(gamesWon*100/gamesPlayed): .2f}%")
+        print("Guess Distribution")
+        print(f"Guessed in 1st attempt : {guessDistribution[0]}")
+        print(f"Guessed in 2nd attempt : {guessDistribution[1]}")
+        print(f"Guessed in 3rd attempt : {guessDistribution[2]}")
+        print(f"Guessed in 4th attempt : {guessDistribution[3]}")
+        print(f"Guessed in 5th attempt : {guessDistribution[4]}")
+        print(f"Guessed in 6th attempt : {guessDistribution[5]}")
+
 
 if __name__ == "__main__":
     main()
