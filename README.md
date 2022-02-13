@@ -1,1 +1,1 @@
-# SSW810_Wordle
+# Wordle Assignment
