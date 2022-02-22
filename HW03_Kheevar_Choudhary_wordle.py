@@ -2,6 +2,12 @@ import HW03_Kheevar_Choudhary_ui as ui          #importing the ui module
 import HW03_Kheevar_Choudhary_dictionary as dictionary      #importing the dictionary module
 
 
+def compareWord(a,b):
+    if(a==b):
+        return True
+    else:
+        return False
+
 def main():
     gamesPlayed = 0
     gamesWon = 0
@@ -19,7 +25,7 @@ def main():
 
             letter_counts: dict = {}                #making a dictionary to store the number of letters
 
-            if(word == answer):                     
+            if(compareWord(word,answer)):                     
                 print("Correct Word! \n")
                 gamesWon = gamesWon + 1
                 guessDistribution[attempts-1] += 1
