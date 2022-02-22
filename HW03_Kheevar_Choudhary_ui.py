@@ -1,14 +1,21 @@
 userInputList = []
+def quitfunction(a):
+    if(len(a) == 0):
+        return True
+    else:
+        return False
+
 def userinput(k) :
     
     print(f"Attempt #{k}:")
     print("Any 5 letter word")
     word = input()      #Taking user's input
     word = word.upper() 
-    if(len(word) == 0):         #checking whether the word is empty or not
-        quit()                
+    if(quitfunction(word)):         #checking whether the word is empty or not
+        quit()               
     if len(word) != 5 or word in userInputList or not word.isalpha(): #checking whether the input is valid or not
         print("Input should be a unique 5 letter word")
+        return "incorrect input"
     else:
         userInputList.append(word)
         k = k+1
