@@ -15,8 +15,14 @@ def main():
     while(True):
         f = open("gameplay.log", "a+")                        #used to run the program indefinitely until a user enters an empty word to exit the program
         gamesPlayed = gamesPlayed + 1
-        answer = dictionary.randomWord()
-        dictionary.removeWord(answer)
+        try:
+            answer = dictionary.randomWord()
+        except:
+            print("Answer not found")
+        try:
+            dictionary.removeWord(answer)
+        except:
+            print("Remove word not working")
         f.write(f"Selected Word: {answer}\n")
         attempts = 1
         while(attempts<7):              # user has 6 attempts to guess the correct word
