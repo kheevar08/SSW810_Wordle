@@ -12,9 +12,12 @@ def main():
     gamesPlayed = 0
     gamesWon = 0
     guessDistribution = [0,0,0,0,0,0]
-    while(True):                        #used to run the program indefinitely until a user enters an empty word to exit the program
+    while(True):
+        f = open("gameplay.log", "a+")                        #used to run the program indefinitely until a user enters an empty word to exit the program
         gamesPlayed = gamesPlayed + 1
         answer = dictionary.randomWord()
+        dictionary.removeWord(answer)
+        f.write(f"Selected Word: {answer}\n")
         attempts = 1
         while(attempts<7):              # user has 6 attempts to guess the correct word
             word = ui.userinput(attempts)
@@ -22,7 +25,7 @@ def main():
             while(dictionary.checkWord(word) != True):      #checking if the word is a valid dictionary word or not
                 print("Not a valid dictionary word")
                 word = ui.userinput(attempts)
-
+            f.write(f"User Input:{word}\n")
             letter_counts: dict = {}                #making a dictionary to store the number of letters
 
             if(compareWord(word,answer)):                     
@@ -65,6 +68,15 @@ def main():
         print(f"Guessed in 4th attempt : {guessDistribution[3]}")
         print(f"Guessed in 5th attempt : {guessDistribution[4]}")
         print(f"Guessed in 6th attempt : {guessDistribution[5]}")
+        f.write("User Report\n")
+        f.write(f"Total number of games played: {gamesPlayed}\n")
+        f.write(f"Win percentage: {(gamesWon*100/gamesPlayed): .2f}%\n")
+        f.write(f"Guessed in 1st attempt : {guessDistribution[0]}\n")
+        f.write(f"Guessed in 2nd attempt : {guessDistribution[1]}\n")
+        f.write(f"Guessed in 3rd attempt : {guessDistribution[2]}\n")
+        f.write(f"Guessed in 4th attempt : {guessDistribution[3]}\n")
+        f.write(f"Guessed in 5th attempt : {guessDistribution[4]}\n")
+        f.write(f"Guessed in 6th attempt : {guessDistribution[5]}\n")
 
 
 if __name__ == "__main__":
