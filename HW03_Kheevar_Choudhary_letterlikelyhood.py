@@ -1,5 +1,6 @@
 import csv
 import string
+from tabnanny import check
 from tempfile import TemporaryDirectory
 occurence = {
   'A': [0, 0, 0, 0, 0],
@@ -32,6 +33,7 @@ occurence = {
 
 
 def letterLikelyhood():
+  """Function to calculate the likelyhood of the letters"""
   f = open("wordList.txt",'r')
   content = f.read()
   tempList = content.split('\n')
@@ -57,21 +59,24 @@ def letterLikelyhood():
   f.close()
     
 def dictListToTuple(dict):
+  """Function to convert a list to tuple present in a dictionary"""
   for key in dict.keys():
     dict[key] = tuple(dict[key])
 
 def statToDict():
+  """Function for reading data from a csv file and storing it into a dictionary"""
   f = open("letterFrequency.csv", 'r')
   content = f.read()
   tempList = content.split('\n')
   myDict = {}
   for line in range(1,len(tempList)):
     temp = tempList[line].split(", ")
-    if len(temp[0]) != 0:
+    if checkTemp(temp):
       myDict[temp[0]] = (temp[1],temp[2],temp[3],temp[4],temp[5])
   return myDict
 
 def wordRank():
+  """Function for calculating the ranks of the word present in the dictionary"""
   f = open("wordList.txt",'r')
   content = f.read()
   tempList = content.split('\n')
@@ -90,18 +95,8 @@ def wordRank():
     flag += 1
   f.close()
 
-
-def Sort(sub_li):
-    l = len(sub_li)
-    for i in range(0, l):
-        for j in range(0, l-i-1):
-            if (sub_li[j][1] > sub_li[j + 1][1]):
-                tempo = sub_li[j]
-                sub_li[j]= sub_li[j + 1]
-                sub_li[j + 1]= tempo
-    return sub_li
-
-  
-letterLikelyhood()
-statToDict()
-wordRank()
+def checkTemp(temp):
+  if(len(temp[0]) != 0):
+    return True
+  else:
+    return False

@@ -2,6 +2,7 @@ import unittest
 import HW03_Kheevar_Choudhary_ui as ui
 import HW03_Kheevar_Choudhary_wordle as wordle
 import HW03_Kheevar_Choudhary_dictionary as dictionary
+import HW03_Kheevar_Choudhary_letterlikelyhood as ll
 from unittest.mock import patch
 
 class WordleTest(unittest.TestCase):
@@ -53,6 +54,13 @@ class WordleTest(unittest.TestCase):
     def test_file_size_function(self) -> None :
         """Testing file size function"""
         self.assertFalse(dictionary.fileSize())
+    
+    def test_check_temp_function_true(self) -> None :
+        """Testing checkTemp function with temp as not 0"""
+        self.assertTrue(ll.checkTemp(["A",(3,5,7,2,3)]))
+    def test_check_temp_function_false(self) -> None :
+        """Testing checkTemp function with temp as 0"""
+        self.assertFalse(ll.checkTemp([""]))
 
 if __name__ == "__main__":
     unittest.main()
