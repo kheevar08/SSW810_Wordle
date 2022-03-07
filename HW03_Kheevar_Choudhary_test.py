@@ -50,6 +50,9 @@ class WordleTest(unittest.TestCase):
     def test_quit_function_false(self) -> None :
         """Testing the quit function with a valid word"""
         self.assertFalse(ui.quitfunction("Books"))
+    def test_file_size_function(self) -> None :
+        """Testing file size function"""
+        self.assertFalse(dictionary.fileSize())
 
 if __name__ == "__main__":
     unittest.main()
