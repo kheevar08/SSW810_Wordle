@@ -31,7 +31,10 @@ def removeWord(word):
             if line.strip("\n") != word:
                 f.write(line)
     if(fileSize()):
-        resetWords()
+        try:
+            resetWords()
+        except:
+            print("Reset words not working")
 
 def resetWords():
     f = open("wordList","w")
