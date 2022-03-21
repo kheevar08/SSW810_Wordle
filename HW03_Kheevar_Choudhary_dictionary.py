@@ -1,48 +1,57 @@
 from importlib.metadata import files
 import random       #for using random.choice function
 import os
-f = open("words.txt", "r")      #opening the file
-content = f.read()              #reading the file
-wordList = content.split("\n")  #storing the content of the file in the list
-f.close()
-f = open("wordList.txt","w")
-for word in wordList:
-    if(len(word) == 5):
-        f.write(f"{word.upper()}\n")
-f.close()       #closing the file
-f = open("wordList.txt","r")
-content = f.read()
-filteredList = content.split('\n')
-f.close()
-def randomWord() :      #to generate random word
-    return random.choice(filteredList)
+class Dictionary:
 
-def checkWord(word) :       #to check a valid dictionary word
-    if(word in filteredList):
-        return True
-    else:
-        return False
+    filteredList = []
 
-def removeWord(word):
-    with open("wordList.txt", "r") as f:
-        lines = f.readlines()
-    with open("wordList.txt", "w") as f:
-        for line in lines:
-            if line.strip("\n") != word:
-                f.write(line)
-    if(fileSize()):
-        try:
-            resetWords()
-        except:
-            print("Reset words not working")
+    def __init__(self):   
+        f = open("words.txt", "r")      #opening the file
+        content = f.read()              #reading the file
+        wordList = content.split("\n")  #storing the content of the file in the list
+        f.close()
+        f = open("wordList.txt","w")
+        for word in wordList:
+            if(len(word) == 5):
+                f.write(f"{word.upper()}\n")
+        f.close()       #closing the file
+        f = open("wordList.txt","r")
+        content = f.read()
+        self.filteredList = content.split('\n')
+        f.close()
+    
+    def __str__(self) -> str:
+        return f"Dictionary(filteredList:{str(self.filteredList)})"
+    
+    def randomWord(self) :      #to generate random word
+        return random.choice(self.filteredList)
 
-def resetWords():
-    f = open("wordList","w")
-    f.write(filteredList)
-    f.close()
+    def checkWord(self,word) :       #to check a valid dictionary word
+        if(word in self.filteredList):
+            return True
+        else:
+            return False
 
-def fileSize():
-    if os.stat("wordList.txt").st_size == 0 :
-        return True
-    else:
-        return False
+    def removeWord(self,word):
+        with open("wordList.txt", "r") as f:
+            lines = f.readlines()
+        with open("wordList.txt", "w") as f:
+            for line in lines:
+                if line.strip("\n") != word:
+                    f.write(line)
+        if(self.fileSize()):
+            try:
+                self.resetWords()
+            except:
+                print("Reset words not working")
+
+    def resetWords(self):
+        f = open("wordList","w")
+        f.write(self.filteredList)
+        f.close()
+
+    def fileSize(self):
+        if os.stat("wordList.txt").st_size == 0 :
+            return True
+        else:
+            return False
