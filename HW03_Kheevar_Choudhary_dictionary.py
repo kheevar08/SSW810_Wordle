@@ -19,6 +19,10 @@ class Dictionary:
         content = f.read()
         self.filteredList = content.split('\n')
         f.close()
+    
+    def __str__(self) -> str:
+        return f"Dictionary(filteredList:{str(self.filteredList)})"
+    
     def randomWord(self) :      #to generate random word
         return random.choice(self.filteredList)
 

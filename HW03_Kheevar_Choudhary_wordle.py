@@ -14,6 +14,9 @@ class Wordle:
         self.gamesWon = 0
         self.guessDistribution = [0,0,0,0,0,0]
 
+    def __str__(self) -> str:
+        return f"Wordle(gamesPlayed:{str(self.gamesPlayed)}, gamesWon:{str(self.gamesWon)}, guessDistribution:{str(self.guessDistribution)})"
+
     def compareWord(self,a,b):
         if(a==b):
             return True

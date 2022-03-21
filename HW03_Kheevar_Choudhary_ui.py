@@ -3,6 +3,10 @@ class Ui:
     userInputList = []
     def __init__(self):
         self.userInputList = []
+    
+    def __str__(self) -> str:
+        return f"Ui(userInputList:{str(self.userInputList)})"
+
     def quitfunction(self,a):
         if(len(a) == 0):
             return True

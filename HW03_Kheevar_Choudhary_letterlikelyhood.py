@@ -34,6 +34,8 @@ class ll:
       'Z': [0, 0, 0, 0, 0],
     }
 
+  def __str__(self) -> str:
+        return f"ll(occurence:{str(self.occurence)})"
 
   def letterLikelyhood(self):
     """Function to calculate the likelyhood of the letters"""
