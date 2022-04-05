@@ -1,4 +1,5 @@
 import csv
+from email.policy import default
 rankDic = {}
 with open('wordRank.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -24,6 +25,7 @@ def rankedWords(correctWords, incorrectWords):
     else:
         for key in rankDic:
             myList.append(rankDic[key])
+    defaultList = myList.copy()
     if incorrectWords != None:
         for word in myList:
             flag = 0
@@ -31,8 +33,5 @@ def rankedWords(correctWords, incorrectWords):
                 if letter in word:
                     flag = 1
             if flag == 1:
-                myList.remove(word)
-    return myList
-
-#testcall to check the function is working right
-print(rankedWords(['A','M'],['N','U','T']))
+                defaultList.remove(word)
+    return defaultList
