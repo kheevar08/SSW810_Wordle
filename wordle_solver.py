@@ -3,10 +3,9 @@ import HW03_Kheevar_Choudhary_dictionary as d
 import wordle_helper as wh
 import logger as l
 
-def wordle_solver():
+def wordle_solver(log):
     win = 0
     loss = 0
-    log = l.logger()
     wordle = w.Wordle()
     dictionary = d.Dictionary()
     attempts = 1
@@ -89,12 +88,12 @@ def wordle_solver():
                 loss += 1
                 break
     log.writeGameStatistics(flag,totalAttempts,(win/(win+loss+1)))
-    log.closeLog()
-
-#Sometimes the code will return "Failed to solve the wordle" and sometimes it will guess the correct word.
-for i in range(0,10):
-    print(i)
-    wordle_solver()
 
 logg = l.logger()
+#Sometimes the code will return "Failed to solve the wordle" and sometimes it will guess the correct word.
+for i in range(0,100):
+    print(i)
+    wordle_solver(logg)
+
 logg.generateReport('2022-04-24 00:00:00.000000','2022-05-05 00:00:00.000000')
+logg.closeLog()
