@@ -62,7 +62,7 @@ class Wordle:
             attempts = attempts + 1
             return ''.join(status)          #printing the status after an attempt
     
-    def play_wordle_solver(self,answer,attempts,solver_word):
+    def play_wordle_solver(self,answer,attempts,solver_word,log):
         f = open("gameplay.log", "a+")
         word = solver_word
         status = []
@@ -73,7 +73,7 @@ class Wordle:
         if(self.compareWord(word,answer)):                     
             print(f"Correct Word! The answer is {answer}")
             self.gamesWon = self.gamesWon + 1
-            self.guessDistribution[attempts-1] += 1
+            # self.guessDistribution[attempts-1] += 1
             return 0
         else:
             for letter in answer:           #loop used to store the number of letters in the answer
@@ -94,7 +94,7 @@ class Wordle:
                         if letter_counts[word[index]] > 0:
                             letter_counts[word[index]] -= 1
                             status[index] = "`"  
-            attempts = attempts + 1
+            # attempts = attempts + 1
             return ''.join(status)          #printing the status after an attempt
 
     def main(self):
